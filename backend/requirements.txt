@@ -1,0 +1,13 @@
+fastapi==0.140.0
+uvicorn[standard]==0.34.0
+SQLAlchemy==2.0.36
+alembic==1.14.1
+pydantic==2.10.6
+pydantic-settings==2.7.1
+psycopg[binary]==3.2.10
+prometheus-fastapi-instrumentator==8.1.0
+pytest==8.3.4
+httpx==0.28.1
+# starlette>=1 pins clear CVE-2025-62727, CVE-2026-48818, CVE-2026-54283
+# (fastapi>=0.140 + instrumentator>=8 support the starlette 1.x line).
+starlette==1.8.0
