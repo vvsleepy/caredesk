@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "caredesk.fullname" . }}-config
+  labels:
+    {{- include "caredesk.labels" . | nindent 4 }}
+data:
+  BACKEND_HOST: "{{ include "caredesk.fullname" . }}-backend:8000"

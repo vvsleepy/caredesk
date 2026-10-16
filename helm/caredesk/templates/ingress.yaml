@@ -1,0 +1,49 @@
+# Single ingress-nginx entrypoint: "/" serves the React SPA,
+# "/api" routes to the FastAPI backend. Order matters - the /api
+# rule must come first so API calls are not swallowed by the SPA.
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "caredesk.fullname" . }}
+  labels:
+    {{- include "caredesk.labels" . | nindent 4 }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+    {{- if .Values.ingress.host }}
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "caredesk.fullname" . }}-backend
+                port:
+                  number: 8000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "caredesk.fullname" . }}-frontend
+                port:
+                  number: 8080
+    {{- end }}
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "caredesk.fullname" . }}-backend
+                port:
+                  number: 8000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "caredesk.fullname" . }}-frontend
+                port:
+                  number: 8080
+{{- end }}

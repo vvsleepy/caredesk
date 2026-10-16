@@ -1,0 +1,55 @@
+# Default values for the CareDesk chart. Override per environment with
+# values-dev.yaml (kind) or values-eks.yaml (AWS EKS + GHCR images).
+
+namespace: caredesk
+
+backend:
+  image: ghcr.io/vvsleepy-max/caredesk-backend
+  tag: latest
+  replicas: 2
+  containerPort: 8000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+frontend:
+  image: ghcr.io/vvsleepy-max/caredesk-frontend
+  tag: latest
+  replicas: 2
+  containerPort: 8080
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+postgres:
+  image: postgres:16-alpine
+  database: caredesk
+  existingSecret: caredesk-postgres-credentials
+  storageSize: 5Gi
+  storageClassName: ""
+
+ingress:
+  enabled: true
+  className: nginx
+  host: caredesk.local
+
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 60
+
+monitoring:
+  serviceMonitor:
+    enabled: true
+    # Must match the label the kube-prometheus-stack release selects on.
+    releaseLabel: kube-prometheus-stack
+    interval: 15s

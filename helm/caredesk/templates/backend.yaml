@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "caredesk.fullname" . }}-backend
+  labels:
+    {{- include "caredesk.labels" . | nindent 4 }}
+    app: caredesk-backend
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: caredesk-backend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: caredesk-backend
+        release: {{ .Release.Name }}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+      containers:
+        - name: backend
+          image: "{{ .Values.backend.image }}:{{ .Values.backend.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.backend.containerPort }}
+              name: http
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgres.existingSecret }}
+                  key: database_url
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.backend.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            runAsUser: 10001
+            capabilities:
+              drop:
+                - ALL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "caredesk.fullname" . }}-backend
+  labels:
+    {{- include "caredesk.labels" . | nindent 4 }}
+    app: caredesk-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: caredesk-backend
+    release: {{ .Release.Name }}
+  ports:
+    - port: 8000
+      targetPort: http
+      protocol: TCP
+      name: http

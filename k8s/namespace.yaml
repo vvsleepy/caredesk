@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: caredesk
+  labels:
+    app.kubernetes.io/name: caredesk
+    app.kubernetes.io/managed-by: Helm

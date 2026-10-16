@@ -1,0 +1,21 @@
+# Local kind rehearsal: images loaded into kind with `kind load docker-image`,
+# ingress served by ingress-nginx on host ports 80/443, HPA off (no metrics-server by default).
+backend:
+  image: caredesk-backend
+  tag: local
+  replicas: 2
+
+frontend:
+  image: caredesk-frontend
+  tag: local
+  replicas: 2
+
+ingress:
+  enabled: true
+  host: caredesk.local
+
+hpa:
+  enabled: false
+
+postgres:
+  storageClassName: standard

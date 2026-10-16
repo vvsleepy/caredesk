@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "caredesk.fullname" . }}-frontend
+  labels:
+    {{- include "caredesk.labels" . | nindent 4 }}
+    app: caredesk-frontend
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: caredesk-frontend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: caredesk-frontend
+        release: {{ .Release.Name }}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101
+        fsGroup: 101
+      containers:
+        - name: frontend
+          image: "{{ .Values.frontend.image }}:{{ .Values.frontend.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.frontend.containerPort }}
+              name: http
+          env:
+            - name: BACKEND_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "caredesk.fullname" . }}-config
+                  key: BACKEND_HOST
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.frontend.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 101
+            capabilities:
+              drop:
+                - ALL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "caredesk.fullname" . }}-frontend
+  labels:
+    {{- include "caredesk.labels" . | nindent 4 }}
+    app: caredesk-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: caredesk-frontend
+    release: {{ .Release.Name }}
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
