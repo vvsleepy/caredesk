@@ -1,0 +1,60 @@
+# Lightweight kube-prometheus-stack values for a 2 x t3.medium EKS cluster.
+# Keeps retention short (3d) and scrapes every 30s to fit small nodes.
+# Grafana admin password below is a DEMO credential for classroom use only.
+
+grafana:
+  enabled: true
+  admin:
+    existingSecret: caredesk-grafana-admin
+    userKey: admin-user
+    passwordKey: admin-password
+  persistence:
+    enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    retention: 3d
+    scrapeInterval: 30s
+    evaluationInterval: 30s
+    # Pick up ServiceMonitors in every namespace (CareDesk chart labels
+    # its ServiceMonitor with release=kube-prometheus-stack).
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorNamespaceSelector: {}
+    resources:
+      requests:
+        cpu: 250m
+        memory: 1024Mi
+      limits:
+        cpu: 1000m
+        memory: 2048Mi
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
+alertmanager:
+  enabled: true
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      receiver: "null"
+    receivers:
+      - name: "null"
+
+nodeExporter:
+  enabled: true
+kubeStateMetrics:
+  enabled: true

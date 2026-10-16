@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caredesk-grafana-dashboard
+  namespace: caredesk
+  labels:
+    grafana_dashboard: "1"
+    app.kubernetes.io/name: caredesk
+data:
+  caredesk-dashboard.json: |
+    {
+      "title": "CareDesk Backend",
+      "uid": "caredesk-backend",
+      "timezone": "browser",
+      "schemaVersion": 39,
+      "version": 1,
+      "panels": [
+        {
+          "id": 1,
+          "title": "Request rate (req/s)",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+          "targets": [
+            {
+              "datasource": "Prometheus",
+              "expr": "sum(rate(http_requests_total{job=\"caredesk-caredesk-backend\"}[1m]))",
+              "legendFormat": "requests/s"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "p95 latency (s)",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+          "targets": [
+            {
+              "datasource": "Prometheus",
+              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_highr_seconds_bucket{job=\"caredesk-caredesk-backend\"}[1m])) by (le))",
+              "legendFormat": "p95"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "5xx error rate (req/s)",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+          "targets": [
+            {
+              "datasource": "Prometheus",
+              "expr": "sum(rate(http_requests_total{job=\"caredesk-caredesk-backend\", status=\"5xx\"}[1m])) or vector(0)",
+              "legendFormat": "5xx/s"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Backend pod CPU (cores)",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+          "targets": [
+            {
+              "datasource": "Prometheus",
+              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"caredesk\", container=\"backend\"}[1m]))",
+              "legendFormat": "cpu cores"
+            }
+          ]
+        }
+      ]
+    }
