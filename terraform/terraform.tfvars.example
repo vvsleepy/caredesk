@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and fill in your own values. Never commit the real file.
+aws_region         = "ap-south-1"
+cluster_name       = "caredesk-eks"
+environment        = "dev"
+vpc_cidr           = "10.30.0.0/16"
+kubernetes_version = "1.34"
