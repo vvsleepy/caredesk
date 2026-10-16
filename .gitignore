@@ -1,0 +1,36 @@
+/reference
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.pytest_cache/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+dist/
+
+# Terraform (local state, real vars - never commit)
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+!*.tfvars.example
+*.backup
+*.plan
+
+# Kubernetes / local
+.kube/
+
+# macOS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Student-private notes (never commit)
+LEARN.md
+MY_STEPS.md
