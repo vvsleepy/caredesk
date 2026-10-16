@@ -1,0 +1,29 @@
+# DEMO: ImagePullBackOff - the backend image tag does not exist in GHCR.
+# Symptom:  kubectl get pods -n caredesk  ->  STATUS ImagePullBackOff / ErrImagePull
+# Debug:    kubectl describe pod -n caredesk -l app=caredesk-broken-image
+#           kubectl get events -n caredesk --sort-by=.lastTimestamp
+#           (look for "Failed to pull image ... manifest unknown")
+# Fix:      retag an existing image (kubectl set image ...) or fix the tag
+#           and redeploy with the correct SHA from the CI build-scan-push logs.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caredesk-broken-image
+  namespace: caredesk
+  labels:
+    app: caredesk-broken-image
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caredesk-broken-image
+  template:
+    metadata:
+      labels:
+        app: caredesk-broken-image
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/vvsleepy-max/caredesk-backend:tag-that-does-not-exist
+          ports:
+            - containerPort: 8000

@@ -1,0 +1,26 @@
+# DEMO: selector mismatch - the Service selects pods that do not exist,
+# so the backend gets NO endpoints and the frontend /api proxy returns 502/503.
+# Symptom:  kubectl get endpoints -n caredesk caredesk-broken-service  ->  <none>
+#           curl via ingress /api/... returns 502 Bad Gateway
+# Debug:    kubectl describe svc -n caredesk caredesk-broken-service
+#           kubectl get pods -n caredesk --show-labels
+#           kubectl get endpoints -n caredesk
+#           (compare Service .spec.selector with Pod labels - they differ)
+# Fix:      kubectl patch/edit the Service selector to app=caredesk-backend,
+#           or delete this demo file - the chart's real Services already match.
+apiVersion: v1
+kind: Service
+metadata:
+  name: caredesk-broken-service
+  namespace: caredesk
+  labels:
+    app: caredesk-broken-service
+spec:
+  type: ClusterIP
+  selector:
+    app: label-that-matches-no-pod
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP
+      name: http
