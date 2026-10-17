@@ -1,6 +1,5 @@
 #  ˚⋆CareDesk — Clinic Appointment Booking Dashboard ⋆˚
 
-
 [![CareDesk CI/CD](https://github.com/vvsleepy/caredesk/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/vvsleepy/caredesk/actions/workflows/ci-cd.yml)
 
 CareDesk is a SaaS-style clinic appointment dashboard used as a DevOps capstone: a **React + Vite** frontend, a **FastAPI** backend, **PostgreSQL**, and a complete path to production — Docker, GitHub Actions + Trivy + GHCR, Terraform (VPC + EKS), Helm, ingress-nginx, HPA, and Prometheus + Grafana.
@@ -12,7 +11,7 @@ CareDesk is a SaaS-style clinic appointment dashboard used as a DevOps capstone:
 - **Recorded Walkthrough Video**: [Demo-video](/DEMO%20caredesk.mov)
 - **Grading Verification Checklist**: [SUBMISSION.md](SUBMISSION.md)
 
-## Architecture
+## Architecture 
 
 ```text
                     +---------------- GitHub Actions ----------------+
