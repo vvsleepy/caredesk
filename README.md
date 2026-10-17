@@ -256,5 +256,6 @@ unset GRAFANA_ADMIN_PASSWORD
 
 Watch the CareDesk project walkthrough:
 
-[Watch or download the demo](./DEMO%20caredesk.mov)
+https://github.com/user-attachments/assets/571dad16-2cc7-4b6f-a3ed-13842ff1cef7
+
 ⋆˚࿔
