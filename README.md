@@ -1,6 +1,5 @@
-# CareDesk — Clinic Appointment Booking Dashboard ⋆˚꩜｡
+#⋆˚꩜｡ CareDesk — Clinic Appointment Booking Dashboard ⋆˚꩜｡
 
-> Customized frontend for Ankita Tripathi. See [START-HERE.md](START-HERE.md) for VS Code setup. Original deployment evidence and grading claims below are retained reference material, not verification of this customized copy.
 
 [![CareDesk CI/CD](https://github.com/vvsleepy/caredesk/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/vvsleepy/caredesk/actions/workflows/ci-cd.yml)
 
@@ -10,7 +9,7 @@ CareDesk is a SaaS-style clinic appointment dashboard used as a DevOps capstone:
 - **Email**: ankita.24bcs10062@sst.scaler.com
 - **Repository**: [https://github.com/vvsleepy/caredesk](https://github.com/vvsleepy/caredesk)
 - **Verified Pipeline Run**: [GitHub Actions Run](https://github.com/vvsleepy/caredesk/actions/runs/39012046511)
-- **Recorded Walkthrough Video**: [Watch on Loom](/DEMO%20caredesk.mov)
+- **Recorded Walkthrough Video**: [Demo-video](/DEMO%20caredesk.mov)
 - **Grading Verification Checklist**: [SUBMISSION.md](SUBMISSION.md)
 
 ## Architecture
@@ -251,7 +250,7 @@ unset GRAFANA_ADMIN_PASSWORD
 ## 9. Final Presentation & Walkthrough Demo
 
 - **Recorded Walkthrough Video**: [Demo-video](/DEMO%20caredesk.mov) (Full demonstration of App $\to$ Git Commit $\to$ CI/CD Pipeline $\to$ Trivy Scan $\to$ GHCR $\to$ Kubernetes Deployment $\to$ Prometheus/Grafana)
-- **Slide Deck**: [`CareDesk DevOps Capstone.pptx`](CareDesk%20DevOps%20Capstone.pptx) (available in repository root)
+- **Slide Deck**: [`CareDesk DevOps Capstone.pptx`](/CareDesk-Presentation-Ankita-Tripathi.pptx) (available in repository root)
 - **Detailed Rubric Checklist**: See [SUBMISSION.md](SUBMISSION.md) for 1-to-1 grading verification across all 10 modules.
 
 ## Project Demo ⋆˚࿔
