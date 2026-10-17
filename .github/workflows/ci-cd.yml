@@ -7,7 +7,7 @@ on:
 
 concurrency:
   group: caredesk-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   REGISTRY: ghcr.io
@@ -123,28 +123,38 @@ jobs:
           docker push "$FRONTEND_IMAGE:latest"
 
   deploy:
-    # Stays GREEN with no cluster: flip the DEPLOY_ENABLED repo variable to
-    # 'true' and add KUBE_CONFIG_DATA once EKS is ready (see MY_STEPS.md).
-    if: vars.DEPLOY_ENABLED == 'true'
+    if: vars.DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main'
     needs: build-scan-push
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     permissions:
       contents: read
-      packages: read
+      id-token: write
+    env:
+      AWS_REGION: ap-southeast-2
+      EKS_CLUSTER_NAME: caredesk-eks
+
     steps:
       - uses: actions/checkout@v4.2.2
+
+      - name: Authenticate to AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::915087794462:role/caredesk-github-deploy
+          aws-region: ap-southeast-2
+          role-session-name: caredesk-github-deploy
+
+      - name: Configure EKS connection
+        run: |
+          aws eks update-kubeconfig \
+            --name "$EKS_CLUSTER_NAME" \
+            --region "$AWS_REGION" \
+            --alias caredesk-aws
 
       - name: Install Helm
         uses: azure/setup-helm@v4.3.0
         with:
-          version: v3.16.3
-
-      - name: Configure kubeconfig
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        run: |
-          mkdir -p ~/.kube
-          echo "$KUBE_CONFIG_DATA" | base64 -d > ~/.kube/config
+          version: v3.21.4
 
       - name: Resolve lowercase image names
         run: |
@@ -154,9 +164,20 @@ jobs:
 
       - name: Deploy CareDesk with Helm
         run: |
-          helm upgrade --install caredesk ./helm/caredesk -n caredesk --create-namespace \
-            -f helm/caredesk/values-eks.yaml \
-            --set backend.image="$BACKEND_IMAGE" \
-            --set backend.tag=${{ github.sha }} \
-            --set frontend.image="$FRONTEND_IMAGE" \
-            --set frontend.tag=${{ github.sha }}
+          helm upgrade caredesk ./helm/caredesk \
+            --kube-context caredesk-aws \
+            --namespace caredesk \
+            --reuse-values \
+            --set-string backend.image="$BACKEND_IMAGE" \
+            --set-string backend.tag="${{ github.sha }}" \
+            --set-string frontend.image="$FRONTEND_IMAGE" \
+            --set-string frontend.tag="${{ github.sha }}" \
+            --atomic \
+            --wait \
+            --timeout 8m
+
+      - name: Verify Helm release
+        run: |
+          helm status caredesk \
+            --kube-context caredesk-aws \
+            --namespace caredesk

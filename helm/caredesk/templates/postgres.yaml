@@ -1,6 +1,6 @@
 # CareDesk PostgreSQL reads credentials from a pre-created Secret; data is
 # stored in a PVC-backed StatefulSet so records survive pod restarts.
-apiVersion: v1
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,8 +42,8 @@ spec:
     spec:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 999
-        fsGroup: 999
+        runAsUser: 70
+        fsGroup: 70
       containers:
         - name: postgres
           image: "{{ .Values.postgres.image }}"
@@ -89,7 +89,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
-            runAsUser: 999
+            runAsUser: 70
             capabilities:
               drop:
                 - ALL

@@ -1,12 +1,12 @@
 # AWS EKS deployment: pulls scanned images from GHCR, ingress via the
 # ingress-nginx controller (AWS NLB), EBS gp3 volume for PostgreSQL data.
 backend:
-  image: ghcr.io/vvsleepy-max/caredesk-backend
+  image: ghcr.io/vvsleepy/caredesk-backend
   tag: latest
   replicas: 2
 
 frontend:
-  image: ghcr.io/vvsleepy-max/caredesk-frontend
+  image: ghcr.io/vvsleepy/caredesk-frontend
   tag: latest
   replicas: 2
 

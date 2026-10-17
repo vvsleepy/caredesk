@@ -4,7 +4,7 @@
 namespace: caredesk
 
 backend:
-  image: ghcr.io/vvsleepy-max/caredesk-backend
+  image: ghcr.io/vvsleepy/caredesk-backend
   tag: latest
   replicas: 2
   containerPort: 8000
@@ -17,7 +17,7 @@ backend:
       memory: 512Mi
 
 frontend:
-  image: ghcr.io/vvsleepy-max/caredesk-frontend
+  image: ghcr.io/vvsleepy/caredesk-frontend
   tag: latest
   replicas: 2
   containerPort: 8080
