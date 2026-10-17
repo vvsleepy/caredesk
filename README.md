@@ -1,4 +1,4 @@
-#  ˚⋆CareDesk — Clinic Appointment Booking Dashboard ⋆˚
+#  ˚⋆ CareDesk — Clinic Appointment Booking Dashboard ⋆˚
 
 [![CareDesk CI/CD](https://github.com/vvsleepy/caredesk/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/vvsleepy/caredesk/actions/workflows/ci-cd.yml)
 
