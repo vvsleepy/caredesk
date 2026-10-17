@@ -1,6 +1,4 @@
-# ⋆˚꩜｡ Capstone Project Submission & Grading Verification ⋆˚꩜｡
-
-> Customized frontend for Ankita Tripathi. See [START-HERE.md](START-HERE.md) for VS Code setup. Original deployment evidence and grading claims below are retained reference material, not verification of this customized copy.
+# ꩜｡ Capstone Project Submission & Grading Verification ｡꩜
 
 **Project**: CareDesk — Clinic Appointment Management System  
 **Author**: Ankita Tripathi (Student ID: 24bcs10062)  
