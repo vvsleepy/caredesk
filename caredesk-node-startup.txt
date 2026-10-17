@@ -1,0 +1,149 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[0m[35m[40m[2J[01;01H[=3h[2J[01;01H[0m[37m[40m  Booting `Amazon Linux (6.18.54-121.166.amzn2023.x86_64) 2023'
+
+[    3.377744] RPC: Registered named UNIX socket transport module.
+[    3.378450] RPC: Registered udp transport module.
+[    3.379082] RPC: Registered tcp transport module.
+[    3.379716] RPC: Registered tcp-with-tls transport module.
+[    3.380463] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    3.537011] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    3.578370] ACPI: button: Power Button [PWRF]
+[    3.578948] input: Sleep Button as /devices/LNXSYSTM:00/LNXSLPBN:00/input/input1
+[    3.581337] ACPI: button: Sleep Button [SLPF]
+[    3.598399] ena 0000:00:05.0: Elastic Network Adapter (ENA) v2.17.4g
+[    3.615157] ena 0000:00:05.0: ENA device version: 0.10
+[    3.615764] ena 0000:00:05.0: ENA controller version: 0.0.1 implementation version 1
+[    3.624238] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    3.634532] i8042: Warning: Keylock active
+[    3.636903] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    3.637464] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    3.701521] ena 0000:00:05.0: LLQ is not supported Fallback to host mode policy.
+[    3.715160] ena 0000:00:05.0: Elastic Network Adapter (ENA) found at mem c0400000, mac addr 02:ff:ee:64:b1:a1
+[    3.740485] ena 0000:00:05.0 ens5: renamed from eth0
+[    3.751124] nvme nvme0: using unchecked data buffer
+[    3.939902] zram_generator::config[1896]: zram0: system has too much memory (3835MB), limit is 800MB, ignoring.
+[    7.613132] nodeadm-internal[1994]: info boot-book/hook.go:40 Waiting for consistent network interfaces..
+[    7.674501] nodeadm-internal[1994]: info system/networking.go:103 checking link states...
+[    7.682237] nodeadm-internal[1994]: info system/networking.go:145 secondary link unmanaged {"linkName": "lo"}
+[    7.684127] nodeadm-internal[1994]: info system/networking.go:135 link configured {"linkName": "ens5"}
+[    7.685756] nodeadm-internal[1994]: info boot-book/hook.go:44 Completed boot hook!
+[    7.994749] nodeadm[2009]: info init/init.go:55 Checking user is root..
+[    7.995910] nodeadm[2009]: info init/init.go:65 Loading configuration.. {"configSource": ["imds://user-data"], "configCache": "/run/eks/nodeadm/config.json"}
+[    7.998328] nodeadm[2009]: warn cli/config.go:25 failed to load cached config {"error": "open /run/eks/nodeadm/config.json: no such file or directory"}
+[    8.023349] nodeadm[2009]: info init/init.go:75 Setting up nodeadm environment aspect...
+[    8.024875] nodeadm[2009]: info init/init.go:84 Enriching configuration..
+[    8.026033] nodeadm[2009]: info init/init.go:166 Detecting OS distro..
+[    8.027174] nodeadm[2009]: info init/init.go:172 Detected OS distro {"distro": "al2023"}
+[    8.028488] nodeadm[2009]: info init/init.go:174 Fetching kubelet version..
+[    8.029636] nodeadm[2009]: info kubelet/version.go:30 Reading kubelet version from file {"path": "/etc/eks/kubelet-version.txt"}
+[    8.031627] nodeadm[2009]: info init/init.go:180 Fetched kubelet version {"version": "v1.36.4"}
+[    8.033084] nodeadm[2009]: info init/init.go:181 Fetching instance details..
+[    8.079823] nodeadm[2009]: SDK 2026/10/16 18:39:13 DEBUG attempting waiter request, attempt count: 1
+[    8.292315] nodeadm[2009]: SDK 2026/10/16 18:39:13 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: bde032f1-40b4-41a5-84bf-63dbc75f2785, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[   23.302290] nodeadm[2009]: SDK 2026/10/16 18:39:28 DEBUG attempting waiter request, attempt count: 2
+[   23.322299] nodeadm[2009]: SDK 2026/10/16 18:39:28 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: 3a507063-fc23-451a-bd7c-6b966b93247b, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[   40.263855] nodeadm[2009]: SDK 2026/10/16 18:39:45 DEBUG attempting waiter request, attempt count: 3
+[   40.284570] nodeadm[2009]: SDK 2026/10/16 18:39:45 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: cafb29f6-da72-48a4-8c62-41f86700af7c, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[   96.418700] nodeadm[2009]: SDK 2026/10/16 18:40:41 DEBUG attempting waiter request, attempt count: 4
+[   96.441843] nodeadm[2009]: SDK 2026/10/16 18:40:41 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: d386d074-79b0-44e6-9f72-ea0745509dfd, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  153.344009] nodeadm[2009]: SDK 2026/10/16 18:41:38 DEBUG attempting waiter request, attempt count: 5
+[  153.368776] nodeadm[2009]: SDK 2026/10/16 18:41:38 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: 1dd566df-601b-41fa-bfcc-c7a99fb97d38, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  188.633727] nodeadm[2009]: SDK 2026/10/16 18:42:13 DEBUG attempting waiter request, attempt count: 6
+[  188.654549] nodeadm[2009]: SDK 2026/10/16 18:42:13 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: 1e966d3c-891d-4383-a4de-d0dca6865b52, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  271.031943] nodeadm[2009]: SDK 2026/10/16 18:43:36 DEBUG attempting waiter request, attempt count: 7
+[  271.073172] nodeadm[2009]: SDK 2026/10/16 18:43:36 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: e1e35574-612a-488d-bc00-3b3dd8e5b6b3, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  324.771449] nodeadm[2009]: SDK 2026/10/16 18:44:29 DEBUG attempting waiter request, attempt count: 8
+[  324.798327] nodeadm[2009]: SDK 2026/10/16 18:44:30 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: 41e64c5f-bad7-4a80-bf10-0cb098014ee7, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  386.882263] nodeadm[2009]: SDK 2026/10/16 18:45:32 DEBUG attempting waiter request, attempt count: 9
+[  386.909150] nodeadm[2009]: SDK 2026/10/16 18:45:32 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: 10368363-ef20-4739-b593-e87cb0d70743, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  412.396630] nodeadm[2009]: SDK 2026/10/16 18:45:57 DEBUG attempting waiter request, attempt count: 10
+[  412.417448] nodeadm[2009]: SDK 2026/10/16 18:45:57 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: a6ebcc95-f841-4e5a-ba16-aaad54b299e8, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  527.461309] nodeadm[2009]: SDK 2026/10/16 18:47:52 DEBUG attempting waiter request, attempt count: 11
+[  527.496948] nodeadm[2009]: SDK 2026/10/16 18:47:52 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: 1c1127c8-d575-410d-9cbe-ce3200364040, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  593.266252] nodeadm[2009]: SDK 2026/10/16 18:48:58 DEBUG attempting waiter request, attempt count: 12
+[  593.290874] nodeadm[2009]: SDK 2026/10/16 18:48:58 DEBUG request failed with unretryable error https response error StatusCode: 403, RequestID: 97632ddf-ce00-4136-bdef-45c2ba20ab8c, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:sts::915087794462:assumed-role/AmazonEKSRoleManager-ap-southeast-2-Node-1/i-096146132a6079378 is not authorized to perform: ec2:DescribeInstances because no identity-based policy allows the ec2:DescribeInstances action
+[  593.300458] nodeadm[2009]: fatal cli/main.go:38 Command failed {"error": "exceeded max wait time for InstanceCondition waiter"}
+[[0;1;31mFAILED[0m] Failed to start [0;1;39mnodeadm-co….service[0m - EKS Nodeadm Config.
+[[0;1;38;5;185mDEPEND[0m] Dependency failed for [0;1;39mnode…run.service[0m - EKS Nodeadm Run.
+[  593.989378] cloud-init[2020]: Cloud-init v. 22.2.2 running 'init' at Fri, 16 Oct 2026 18:48:59 +0000. Up 593.95 seconds.
+[  594.062999] cloud-init[2020]: ci-info: ++++++++++++++++++++++++++++++++++++++Net device info++++++++++++++++++++++++++++++++++++++
+[  594.065323] cloud-init[2020]: ci-info: +--------+------+----------------------------+---------------+--------+-------------------+
+[  594.067448] cloud-init[2020]: ci-info: | Device |  Up  |          Address           |      Mask     | Scope  |     Hw-Address    |
+[  594.069509] cloud-init[2020]: ci-info: +--------+------+----------------------------+---------------+--------+-------------------+
+[  594.071848] cloud-init[2020]: ci-info: |  ens5  | True |       172.31.12.172        | 255.255.240.0 | global | 02:ff:ee:64:b1:a1 |
+[  594.073885] cloud-init[2020]: ci-info: |  ens5  | True | fe80::ff:eeff:fe64:b1a1/64 |       .       |  link  | 02:ff:ee:64:b1:a1 |
+[  594.075926] cloud-init[2020]: ci-info: |   lo   | True |         127.0.0.1          |   255.0.0.0   |  host  |         .         |
+[  594.078004] cloud-init[2020]: ci-info: |   lo   | True |          ::1/128           |       .       |  host  |         .         |
+[  594.080346] cloud-init[2020]: ci-info: +--------+------+----------------------------+---------------+--------+-------------------+
+[  594.082703] cloud-init[2020]: ci-info: +++++++++++++++++++++++++++++Route IPv4 info++++++++++++++++++++++++++++++
+[  594.086569] cloud-init[2020]: ci-info: +-------+-------------+------------+-----------------+-----------+-------+
+[  594.090103] cloud-init[2020]: ci-info: | Route | Destination |  Gateway   |     Genmask     | Interface | Flags |
+[  594.092673] cloud-init[2020]: ci-info: +-------+-------------+------------+-----------------+-----------+-------+
+[  594.095222] cloud-init[2020]: ci-info: |   0   |   0.0.0.0   | 172.31.0.1 |     0.0.0.0     |    ens5   |   UG  |
+[  594.097139] cloud-init[2020]: ci-info: |   1   |  172.31.0.0 |  0.0.0.0   |  255.255.240.0  |    ens5   |   U   |
+[  594.099109] cloud-init[2020]: ci-info: |   2   |  172.31.0.1 |  0.0.0.0   | 255.255.255.255 |    ens5   |   UH  |
+[  594.101368] cloud-init[2020]: ci-info: |   3   |  172.31.0.2 |  0.0.0.0   | 255.255.255.255 |    ens5   |   UH  |
+[  594.103385] cloud-init[2020]: ci-info: +-------+-------------+------------+-----------------+-----------+-------+
+[  594.105547] cloud-init[2020]: ci-info: +++++++++++++++++++Route IPv6 info+++++++++++++++++++
+[  594.107018] cloud-init[2020]: ci-info: +-------+-------------+---------+-----------+-------+
+[  594.109533] cloud-init[2020]: ci-info: | Route | Destination | Gateway | Interface | Flags |
+[  594.111692] cloud-init[2020]: ci-info: +-------+-------------+---------+-----------+-------+
+[  594.113381] cloud-init[2020]: ci-info: |   0   |  fe80::/64  |    ::   |    ens5   |   U   |
+[  594.115385] cloud-init[2020]: ci-info: |   2   |    local    |    ::   |    ens5   |   U   |
+[  594.117151] cloud-init[2020]: ci-info: |   3   |  multicast  |    ::   |    ens5   |   U   |
+[  594.122957] cloud-init[2020]: ci-info: +-------+-------------+---------+-----------+-------+
+[  595.120125] cloud-init[2020]: 2026-10-16 18:49:00,334 - __init__.py[WARNING]: Unhandled unknown content-type (application/node.eks.aws) userdata: 'b'---'...'
+[  595.519290] cloud-init[2020]: Generating public/private ed25519 key pair.
+[  595.520742] cloud-init[2020]: Your identification has been saved in /etc/ssh/ssh_host_ed25519_key
+[  595.522370] cloud-init[2020]: Your public key has been saved in /etc/ssh/ssh_host_ed25519_key.pub
+[  595.524147] cloud-init[2020]: The key fingerprint is:
+[  595.525205] cloud-init[2020]: SHA256:2TZXYj6hxwPzLCyi33jgisAAuULd2aY4YZ7BnBL6uaA root@ip-172-31-12-172.ap-southeast-2.compute.internal
+[  595.527364] cloud-init[2020]: The key's randomart image is:
+[  595.528409] cloud-init[2020]: +--[ED25519 256]--+
+[  595.529301] cloud-init[2020]: | .               |
+[  595.530211] cloud-init[2020]: |..= o o          |
+[  595.531119] cloud-init[2020]: |+o O o o  o + .  |
+[  595.532079] cloud-init[2020]: |oo+.= o  + X +   |
+[  595.532958] cloud-init[2020]: |= o= .. S B X    |
+[  595.533934] cloud-init[2020]: |=. ..... o = o   |
+[  595.534802] cloud-init[2020]: |E.. .. .         |
+[  595.535863] cloud-init[2020]: | . . ..o.        |
+[  595.536740] cloud-init[2020]: |  . ..o..        |
+[  595.537620] cloud-init[2020]: +----[SHA256]-----+
+[  595.538472] cloud-init[2020]: Generating public/private ecdsa key pair.
+[  595.539762] cloud-init[2020]: Your identification has been saved in /etc/ssh/ssh_host_ecdsa_key
+[  595.541331] cloud-init[2020]: Your public key has been saved in /etc/ssh/ssh_host_ecdsa_key.pub
+[  595.542807] cloud-init[2020]: The key fingerprint is:
+[  595.543741] cloud-init[2020]: SHA256:zruve40Tk6QkACcen2EQXjF+BoPJPqhu3WoKbf1HA2o root@ip-172-31-12-172.ap-southeast-2.compute.internal
+[  595.545747] cloud-init[2020]: The key's randomart image is:
+[  595.546755] cloud-init[2020]: +---[ECDSA 256]---+
+[  595.547748] cloud-init[2020]: | .**X.           |
+[  595.548642] cloud-init[2020]: | o+O.*           |
+[  595.549527] cloud-init[2020]: | oo +.o          |
+[  595.550446] cloud-init[2020]: |. o  oo . .      |
+[  595.551391] cloud-init[2020]: |.  . . +So .     |
+[  595.552264] cloud-init[2020]: |.. .E  o+ +      |
+[  595.553143] cloud-init[2020]: |o +.o  .o. =     |
+[  595.554037] cloud-init[2020]: |.+ o o  ..+ .    |
+[  595.554916] cloud-init[2020]: |..o.. ..=*..     |
+[  595.555814] cloud-init[2020]: +----[SHA256]-----+
+[  596.085295] cloud-init[2100]: Cloud-init v. 22.2.2 running 'modules:config' at Fri, 16 Oct 2026 18:49:01 +0000. Up 596.01 seconds.
+2026/10/16 18:49:01Z: SSM Agent unable to acquire credentials: <error>no valid credentials could be retrieved for ec2 identity. Default Host Management Err: error calling RequestManagedInstanceRoleToken: AccessDeniedException: Systems Manager's instance management role is not configured for account: 915087794462
+	status code: 400, request id: f023bdd4-15ed-4f65-be78-eaf7a86d99f3</error>
+[  596.546202] cloud-init[2107]: Cloud-init v. 22.2.2 running 'modules:final' at Fri, 16 Oct 2026 18:49:01 +0000. Up 596.49 seconds.
+ci-info: no authorized SSH keys fingerprints found for user ec2-user.
+<14>Oct 16 18:49:01 cloud-init: #############################################################
+<14>Oct 16 18:49:01 cloud-init: -----BEGIN SSH HOST KEY FINGERPRINTS-----
+<14>Oct 16 18:49:01 cloud-init: 256 SHA256:zruve40Tk6QkACcen2EQXjF+BoPJPqhu3WoKbf1HA2o root@ip-172-31-12-172.ap-southeast-2.compute.internal (ECDSA)
+<14>Oct 16 18:49:01 cloud-init: 256 SHA256:2TZXYj6hxwPzLCyi33jgisAAuULd2aY4YZ7BnBL6uaA root@ip-172-31-12-172.ap-southeast-2.compute.internal (ED25519)
+<14>Oct 16 18:49:01 cloud-init: -----END SSH HOST KEY FINGERPRINTS-----
+<14>Oct 16 18:49:01 cloud-init: #############################################################
+-----BEGIN SSH HOST KEY KEYS-----
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLU/lKrdg35UgZla8HKDr1eb60M5Xk4l0pmFIRPNWFT5gOaupDNjZIWg1Wx+OuQsfUUQNGQ+wd9ALQi9m8RfJGc= root@ip-172-31-12-172.ap-southeast-2.compute.internal
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqIJGRO4n3nEGCF7eLP2AFwaEKfBZv6Qn7Y7WrqRbiN root@ip-172-31-12-172.ap-southeast-2.compute.internal
+-----END SSH HOST KEY KEYS-----
+[  596.687410] cloud-init[2107]: Cloud-init v. 22.2.2 finished at Fri, 16 Oct 2026 18:49:01 +0000. Datasource DataSourceEc2.  Up 596.68 seconds
+
+Amazon Linux 2023.12.20261012
+Kernel 6.18.54-121.166.amzn2023.x86_64 on an x86_64 (-)
+
+
